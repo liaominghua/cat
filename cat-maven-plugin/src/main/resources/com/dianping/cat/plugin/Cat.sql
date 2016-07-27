@@ -82,7 +82,7 @@ CREATE TABLE `report` (
   `ip` varchar(50) DEFAULT NULL COMMENT '报表来自于哪台机器',
   `domain` varchar(50) NOT NULL  COMMENT '报表项目',
   `period` timestamp NOT NULL COMMENT '报表时间段',
-  `creation_date` timestamp NOT NULL COMMENT '报表创建时间',
+  `creation_date` timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT '报表创建时间',
   PRIMARY KEY (`id`),
   KEY `IX_Domain_Name_Period` (`domain`,`name`,`period`),
   KEY `IX_Name_Period` (`name`,`period`),
@@ -125,7 +125,7 @@ CREATE TABLE `businessReport` (
   `productLine` varchar(50) NOT NULL COMMENT '指标来源于哪个产品组',
   `period` timestamp NOT NULL COMMENT '报表时间段',
   `content` longblob COMMENT '用于存放报表的具体内容',
-  `creation_date` timestamp NOT NULL COMMENT '报表创建时间',
+  `creation_date` timestamp NOT NULL default CURRENT_TIMESTAMP  COMMENT '报表创建时间',
   PRIMARY KEY (`id`),
   KEY `IX_Period_productLine_name` (`period`,`productLine`,`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED COMMENT='用于存放业务监控实时报表信息，处理之后的结果';
