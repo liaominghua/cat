@@ -38,6 +38,17 @@ CREATE TABLE `weeklyreport` (
   UNIQUE KEY `period` (`period`,`domain`,`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='周报表';
 
+CREATE TABLE `hourly_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL COMMENT '报表名称, transaction, problem...',
+  `ip` varchar(50) NOT NULL COMMENT '报表来自于哪台cat-consumer机器',
+  `domain` varchar(50) NOT NULL COMMENT '报表处理的Domain信息',
+  `index` int(11) NOT NULL  COMMENT '顺序',
+  `start_time` datetime NOT NULL  COMMENT '起始时间',
+  `creation_date` datetime NOT NULL COMMENT '报表创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='小时报表';
+
 CREATE TABLE `monthreport` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL COMMENT '报表名称, transaction, problem...',
@@ -109,6 +120,14 @@ CREATE TABLE `weekly_report_content` (
   `creation_date` timestamp NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`report_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED COMMENT='周报表二进制内容';
+
+CREATE TABLE `hourly_report_content` (
+  `report_id` int(11) NOT NULL COMMENT '报表ID',
+  `format` int(11) NOT NULL COMMENT '报表格式',
+  `content` longblob NOT NULL COMMENT '二进制报表内容',
+  `creation_date` timestamp NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`report_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED COMMENT='小时报表内容';
 
 CREATE TABLE `monthly_report_content` (
   `report_id` int(11) NOT NULL COMMENT '报表ID',
