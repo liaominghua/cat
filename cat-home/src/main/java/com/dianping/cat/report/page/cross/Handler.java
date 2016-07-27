@@ -89,7 +89,10 @@ public class Handler implements PageHandler<Context> {
 
 			projectInfo.setClientIp(model.getIpAddress()).setCallSortBy(model.getCallSort())
 			      .setServiceSortBy(model.getServiceSort());
-			projectInfo.visitCrossReport(projectReport);
+			if(projectReport != null && projectReport.getLocals().size() > 0) {
+				projectInfo.visitCrossReport(projectReport);
+			}
+			
 			model.setProjectInfo(projectInfo);
 			model.setReport(projectReport);
 			break;
