@@ -32,7 +32,12 @@ public class Model extends AbstractReportModel<Action, ReportPage, Context> {
 
 	@Override
 	public String getDomain() {
-		return m_report.getDomain();
+		if(m_report == null ) {
+			return getDisplayDomain();
+		}
+		else {
+			return m_report.getDomain();
+		}
 	}
 
 	@Override

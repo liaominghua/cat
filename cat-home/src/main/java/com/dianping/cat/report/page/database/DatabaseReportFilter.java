@@ -58,6 +58,9 @@ public class DatabaseReportFilter extends BaseVisitor {
 
 	@Override
 	public void visitMetricItem(MetricItem metricItem) {
+		if(metricItem == null) {
+			return;
+		}
 		String id = metricItem.getId();
 
 		if (validate(id)) {
@@ -70,6 +73,9 @@ public class DatabaseReportFilter extends BaseVisitor {
 
 	@Override
 	public void visitMetricReport(MetricReport metricReport) {
+		if(metricReport == null) {
+			return;
+		}
 		m_report = new MetricReport(metricReport.getProduct());
 
 		m_report.setStartTime(metricReport.getStartTime());

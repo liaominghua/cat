@@ -38,8 +38,7 @@ public class StorageSorter {
 
 	public Machine getMachine() {
 		Machine machine = new Machine();
-
-		if (!m_report.getMachines().isEmpty()) {
+		if (m_report != null && m_report.getMachines() != null && !m_report.getMachines().isEmpty()) {
 			machine = m_report.getMachines().values().iterator().next();
 		}
 		return machine;

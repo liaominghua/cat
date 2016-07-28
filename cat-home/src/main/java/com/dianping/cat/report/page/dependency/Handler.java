@@ -127,6 +127,9 @@ public class Handler implements PageHandler<Context> {
 	}
 
 	private void buildHourlyReport(DependencyReport report, Model model, Payload payload) {
+		if(model == null || report ==null) {
+			return ;
+		}
 		Segment segment = report.findSegment(model.getMinute());
 
 		model.setReport(report);

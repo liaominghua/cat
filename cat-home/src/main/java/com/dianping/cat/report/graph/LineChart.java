@@ -173,7 +173,9 @@ public class LineChart {
 	}
 
 	public LineChart setStart(Date start) {
-		m_start = m_sdf.format(start);
+		if(start != null) {
+			m_start = m_sdf.format(start);
+		}
 		return this;
 	}
 

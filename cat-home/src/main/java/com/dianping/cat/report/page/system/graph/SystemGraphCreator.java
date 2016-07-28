@@ -100,7 +100,10 @@ public class SystemGraphCreator extends AbstractGraphCreator {
 			mergeMap(sourceValue, currentValues, totalSize, index);
 			index++;
 
-			Statistic ipList = report.getStatistics().get(SystemReportConvertor.IP_LIST_KEY);
+			Statistic ipList = null;
+			if(report == null ) {
+				ipList = report.getStatistics().get(SystemReportConvertor.IP_LIST_KEY);
+			}
 
 			if (ipList != null) {
 				ipAddrs.addAll(ipList.getStatisticsItems().keySet());

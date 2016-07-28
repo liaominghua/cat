@@ -154,7 +154,9 @@ public class LineGraphBuilder extends BaseVisitor {
 
 	@Override
 	public void visitDependencyReport(DependencyReport dependencyReport) {
-		m_start = dependencyReport.getStartTime();
+		if(dependencyReport != null) {
+			m_start = dependencyReport.getStartTime();
+		}
 		super.visitDependencyReport(dependencyReport);
 	}
 

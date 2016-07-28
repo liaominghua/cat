@@ -47,6 +47,9 @@ public class CdnGraphCreator extends AbstractGraphCreator {
 
 	private Map<String, double[]> fetchData(MetricReport report) {
 		Map<String, double[]> data = new LinkedHashMap<String, double[]>();
+		if(report == null) {
+			return data;
+		}
 		Map<String, MetricItem> items = report.getMetricItems();
 
 		for (Entry<String, MetricItem> item : items.entrySet()) {
@@ -85,8 +88,7 @@ public class CdnGraphCreator extends AbstractGraphCreator {
 
 		for (; start < end; start += TimeHelper.ONE_HOUR) {
 			MetricReport report = m_metricReportService.queryCdnReport(CDN, properties, new Date(start));
-			Map<String, double[]> currentValues;
-			currentValues = fetchData(report);
+			Map<String, double[]> currentValues = fetchData(report);
 
 			mergeMap(sourceValue, currentValues, totalSize, index);
 			index++;

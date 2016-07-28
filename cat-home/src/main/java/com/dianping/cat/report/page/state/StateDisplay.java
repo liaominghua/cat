@@ -193,6 +193,9 @@ public class StateDisplay extends BaseVisitor {
 
 	@Override
 	public void visitStateReport(StateReport stateReport) {
+		if(stateReport == null) {
+			return;
+		}
 		m_stateReport.setDomain(stateReport.getDomain()).setStartTime(stateReport.getStartTime())
 		      .setEndTime(stateReport.getEndTime());
 		super.visitStateReport(stateReport);

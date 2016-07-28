@@ -55,6 +55,9 @@ public class AllMachineMerger extends BaseVisitor {
 
 	@Override
 	public void visitStorageReport(StorageReport storageReport) {
+		if(storageReport == null) {
+			return ;
+		}
 		m_storageReport = new StorageReport(storageReport.getId());
 
 		m_storageReport.setName(storageReport.getName()).setType(storageReport.getType())

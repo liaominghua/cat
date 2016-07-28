@@ -27,6 +27,9 @@ public class AllMachineMerger extends BaseVisitor {
 
 	@Override
 	public void visitEventReport(EventReport eventReport) {
+		if(eventReport == null) {
+			return;
+		}
 		m_report = new EventReport(eventReport.getDomain());
 		m_report.setStartTime(eventReport.getStartTime());
 		m_report.setEndTime(eventReport.getEndTime());
@@ -38,12 +41,18 @@ public class AllMachineMerger extends BaseVisitor {
 
 	@Override
 	public void visitMachine(Machine machine) {
+		if(machine == null) {
+			return ;
+		}
 		m_report.findOrCreateMachine(Constants.ALL);
 		super.visitMachine(machine);
 	}
 
 	@Override
 	public void visitName(EventName name) {
+		if(name == null ) {
+			return;
+		}
 		m_currentName = name.getId();
 		EventName temp = m_report.findOrCreateMachine(Constants.ALL).findOrCreateType(m_currentType)
 		      .findOrCreateName(m_currentName);
@@ -54,6 +63,9 @@ public class AllMachineMerger extends BaseVisitor {
 
 	@Override
 	public void visitRange(Range range) {
+		if(range == null) {
+			return;
+		}
 		m_currentRange = range.getValue();
 		Range temp = m_report.findOrCreateMachine(Constants.ALL).findOrCreateType(m_currentType)
 		      .findOrCreateName(m_currentName).findOrCreateRange(m_currentRange);
@@ -64,6 +76,9 @@ public class AllMachineMerger extends BaseVisitor {
 
 	@Override
 	public void visitType(EventType type) {
+		if(type == null) {
+			return;
+		}
 		m_currentType = type.getId();
 		EventType temp = m_report.findOrCreateMachine(Constants.ALL).findOrCreateType(m_currentType);
 

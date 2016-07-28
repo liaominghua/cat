@@ -29,6 +29,9 @@ public class AllNameMerger extends BaseVisitor {
 
 	@Override
 	public void visitEventReport(EventReport eventReport) {
+		if(eventReport  == null) {
+			return;
+		}
 		m_report = new EventReport(eventReport.getDomain());
 		m_report.setStartTime(eventReport.getStartTime());
 		m_report.setEndTime(eventReport.getEndTime());
@@ -40,6 +43,9 @@ public class AllNameMerger extends BaseVisitor {
 
 	@Override
 	public void visitMachine(Machine machine) {
+		if(machine == null) {
+			return;
+		}
 		m_currentIp = machine.getIp();
 		m_report.findOrCreateMachine(m_currentIp);
 		super.visitMachine(machine);
@@ -47,6 +53,9 @@ public class AllNameMerger extends BaseVisitor {
 
 	@Override
 	public void visitName(EventName name) {
+		if(name == null) {
+			return;
+		}
 		m_currentName = name.getId();
 		EventName temp = m_report.findOrCreateMachine(m_currentIp).findOrCreateType(m_currentType)
 		      .findOrCreateName(m_currentName);
@@ -63,6 +72,9 @@ public class AllNameMerger extends BaseVisitor {
 
 	@Override
 	public void visitRange(Range range) {
+		if(range == null) {
+			return ;
+		}
 		m_currentRange = range.getValue();
 		Range temp = m_report.findOrCreateMachine(m_currentIp).findOrCreateType(m_currentType)
 		      .findOrCreateName(m_currentName).findOrCreateRange(m_currentRange);

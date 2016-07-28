@@ -193,6 +193,9 @@ public class Handler implements PageHandler<Context> {
 	}
 
 	private void buildDepartments(Payload payload, Model model, StorageReport storageReport) {
+		if(payload == null || model == null || storageReport == null) {
+			return;
+		}
 		Map<String, Department> departments = m_storageGroupConfigManager.queryStorageDepartments(
 		      SortHelper.sortDomain(storageReport.getIds()), payload.getType());
 		model.setDepartments(departments);
