@@ -1,3 +1,9 @@
-<config mode="client" xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="config.xsd">
-	<domain id="12345"/>
+<config mode="client" xmlns:xsi="http://www.w3.org/2001/XMLSchema"
+	xsi:noNamespaceSchemaLocation="config.xsd">
+	<servers>
+		<server ip="localhost" port="2280" enabled="true">
+			server
+		</server>
+	</servers>
+	<domain id="cat" />
 </config>

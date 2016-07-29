@@ -169,9 +169,18 @@ public class Handler implements PageHandler<Context> {
 		model.setOperators(m_appConfigManager.queryConfigItem(AppConfigManager.OPERATOR));
 		model.setCodes(m_patternManager.queryCodes());
 
-		PatternItem first = m_patternManager.queryUrlPatternRules().iterator().next();
-
-		model.setDefaultApi(first.getName() + "|" + first.getPattern());
+		PatternItem first = null;
+		try{
+			//元素为空的话，可能抛出异常
+			first = m_patternManager.queryUrlPatternRules().iterator().next();
+		}catch(Exception e) {
+			
+		}
+		
+		if(first != null) {
+			model.setDefaultApi(first.getName() + "|" + first.getPattern());
+		}
+	
 		model.setPattermItems(m_patternManager.queryUrlPatterns());
 		m_normalizePayload.normalize(model, payload);
 	}
