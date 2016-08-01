@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Initializable;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.InitializationException;
 import org.unidal.cat.spi.Report;
@@ -27,6 +28,7 @@ import com.dianping.cat.message.Transaction;
 
 @Named(type = ReportProvider.class, value = RecentReportProvider.ID)
 public class RecentReportProvider<T extends Report> implements ReportProvider<T>, Initializable {
+	private static final  Logger LOGGER = Logger.getLogger(RecentReportProvider.class);
 	public static final String ID = "recent";
 
 	@Inject
@@ -84,14 +86,15 @@ public class RecentReportProvider<T extends Report> implements ReportProvider<T>
 								reports.add(report);
 							}
 						} catch (InterruptedException e) {
-                            e.printStackTrace();
+							LOGGER.warn("",e);
 							break;
 						} catch (Exception e) {
-							e.printStackTrace();
+							LOGGER.error("",e);
 						}
  					}
                     else {
-                        System.out.println("Future is not completed on timeout. " + future);
+                    	LOGGER.info("Future is not completed on timeout. " + future);
+//                    	System.out.println();
                     }
 				}
 			} catch (InterruptedException e) {
