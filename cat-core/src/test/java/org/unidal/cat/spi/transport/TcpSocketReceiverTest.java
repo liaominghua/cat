@@ -44,7 +44,7 @@ public class TcpSocketReceiverTest extends ComponentTestCase {
 
 		@Override
 		public int getTcpPort() {
-			return 2282;
+			return 2281;
 		}
 
 		@Override
