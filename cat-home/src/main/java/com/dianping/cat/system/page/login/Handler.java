@@ -173,6 +173,9 @@ public class Handler implements PageHandler<Context> {
 
 	private boolean shouldLogin(Context ctx) {
 		ActionContext<?> parent = ctx.getParent();
+		if(parent == null) {
+			return true;
+		}
 		InboundActionModel inAction = parent.getRequestContext().getInboundAction();
 		LoginAction meta = inAction.getActionMethod().getAnnotation(LoginAction.class);
 

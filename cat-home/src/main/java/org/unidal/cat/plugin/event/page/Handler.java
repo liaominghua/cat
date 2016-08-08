@@ -278,11 +278,14 @@ public class Handler implements PageHandler<Context> {
 
         EventReport report = model.getReport();
         Date startTime = report.getStartTime();
+        // 还不确定为什么这个字段可以为null
+        if(startTime != null) {
+        	 // TODO for history report, endTime should not be startTime + HOUR
+            Date endTime = ReportPeriod.HOUR.getNextStartTime(startTime);
 
-        // TODO for history report, endTime should not be startTime + HOUR
-        Date endTime = ReportPeriod.HOUR.getNextStartTime(startTime);
-
-        report.setEndTime(new Date(endTime.getTime() - 1000));
+            report.setEndTime(new Date(endTime.getTime() - 1000));
+        }
+       
 
         if (!ctx.isProcessStopped()) {
             m_jspViewer.view(ctx, model);
